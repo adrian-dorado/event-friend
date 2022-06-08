@@ -1,4 +1,4 @@
-function createCard(name, description, pictureUrl, starts, ends) {
+function createCard(name, description, pictureUrl, starts, ends, location) {
     return `
     <div class="d-inline-block" style="max-width: 33%;">
         <div class="d-grid gap-5">
@@ -6,6 +6,7 @@ function createCard(name, description, pictureUrl, starts, ends) {
                 <img src="${pictureUrl}" class="card-img-top">
                 <div class="card-body">
                 <h5 class="card-title">${name}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">${location}</h6>
                 <p class="card-text">${description}</p>
             </div>
             <div class="card-footer text-muted">
@@ -38,7 +39,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                     const endDate = new Date(details.conference.ends).toDateString()
                     const description = details.conference.description;
                     const pictureUrl = details.conference.location.picture_url;
-                    const html = createCard(title, description, pictureUrl, startDate, endDate);
+                    const location = details.conference.location.name
+                    const html = createCard(title, description, pictureUrl, startDate, endDate, location);
                     const column = document.querySelector('.col');
                     column.innerHTML += html;
                 }
