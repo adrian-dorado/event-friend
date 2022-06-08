@@ -7,13 +7,12 @@ function createCard(name, description, pictureUrl, starts, ends, location) {
                 <div class="card-body">
                 <h5 class="card-title">${name}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">${location}</h6>
-                <p class="card-text">${description}</p>
+                <p class="card-text placeholder-glow">${description}</p>
             </div>
             <div class="card-footer text-muted">
                 ${starts} - ${ends}
             </div>
         </div>
-    </div>
     `;
 }
 
