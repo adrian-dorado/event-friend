@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
@@ -25,6 +26,7 @@ class LocationDetailEncoder(ModelEncoder):
 
     def get_extra_data(self, o):
         return {"state": o.state.abbreviation}
+
 
 
 class ConferenceListEncoder(ModelEncoder):
@@ -228,3 +230,14 @@ def api_show_location(request, pk):
             encoder=LocationDetailEncoder,
             safe=False,
         )
+@require_http_methods(["GET"])
+def api_list_states(request):
+    if request.method == "GET":
+        states = State.objects.all().order_by("name")
+        state_list = []
+    for state in states:
+        state_list.append({
+            "name": state.name,
+            "abbreviation": state.abbreviation,
+        })
+    return JsonResponse({"states": state_list})
