@@ -31,7 +31,7 @@ class LocationDetailEncoder(ModelEncoder):
 
 class ConferenceListEncoder(ModelEncoder):
     model = Conference
-    properties = ["name", "starts", "ends"]
+    properties = ["name", "starts", "ends", "id"]
 
 
 class ConferenceDetailEncoder(ModelEncoder):

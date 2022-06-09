@@ -8,8 +8,8 @@
               rel="stylesheet"
               integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
               crossorigin="anonymous">
-        <title>New Location :: Conference GO!</title>
-        <script type="module" src="js/new-location.js"></script>
+        <title>New Conference :: Conference GO!</title>
+        <script type="module" src="js/new-presentation.js"></script>
     </head>
     <body>
         <header>
@@ -31,13 +31,15 @@
                                 <a class="nav-link" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="new-location.html">New Location</a>
+                                <a class="nav-link" aria-current="page" href="new-location.html">New Location</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="new-conference.html">New Conference</a>
+                                <a class="nav-link"
+                                   aria-current="page"
+                                   href="new-conference.html">New Conference</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="new-presentation.html">New Presentation</a>
+                                <a class="nav-link active" aria-current="page" href="new-presentation.html">New Presentation</a>
                             </li>
                         </ul>
                         <form class="d-flex">
@@ -56,39 +58,49 @@
                 <div class="row">
                     <div class="offset-3 col-6">
                         <div class="shadow p-4 mt-4">
-                            <h1>Create a new location</h1>
-                            <form id="create-location-form">
+                            <h1>Create a new presentation</h1>
+                            <form id="create-presentation-form">
                                 <div class="form-floating mb-3">
-                                    <input placeholder="Name"
+                                    <input placeholder="Presenter Name"
                                            required
                                            type="text"
-                                           name="name"
-                                           id="name"
+                                           name="presenter_name"
+                                           id="presenter_name"
                                            class="form-control">
-                                    <label for="name">Name</label>
+                                    <label for="name">Presenter Name</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input placeholder="Room count"
+                                    <input placeholder="Presenter Email"
                                            required
-                                           type="number"
-                                           name="room_count"
-                                           id="room_count"
+                                           type="email"
+                                           name="presenter_email"
+                                           id="presenter_email"
                                            class="form-control">
-                                    <label for="room_count">Room count</label>
+                                    <label for="presenter_email">Presenter Email</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input placeholder="City"
+                                    <input placeholder="Title"
                                            required
                                            type="text"
-                                           name="city"
-                                           id="city"
+                                           name="title"
+                                           id="title"
                                            class="form-control">
-                                    <label for="city">City</label>
+                                    <label for="title">Title</label>
+                                </div>
+                                <div class="">
+                                    <textarea placeholder="Synopsis"
+                                              required
+                                              type="text"
+                                              name="synopsis"
+                                              rows="3"
+                                              id="synopsis"
+                                              class="form-control"></textarea>
+                                    <label for="synopsis"></label>
                                 </div>
                                 <div class="mb-3">
-                                    <select required id="state" name="state" class="form-select">
+                                    <select required id="conference" name="conference" class="form-select">
                                         <option selected value="">
-                                            Choose a state
+                                            Choose a conference
                                         </option>
                                     </select>
                                 </div>
