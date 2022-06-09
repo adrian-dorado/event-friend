@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             const formData = new FormData(formTag);
             const json = JSON.stringify(Object.fromEntries(formData));
             const confId = formData.get('conference')
-            const presentationURL = "http://localhost:8000/api/conferences/" + confId + "/presentations/";
+            const presentationURL = `http://localhost:8000/api/conferences/${confId}/presentations/`;
             const fetchConfig = {
                 method: "post",
                 body: json,
