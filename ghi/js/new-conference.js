@@ -1,28 +1,28 @@
 window.addEventListener('DOMContentLoaded', async () => {
-    const url = 'http://localhost:8000/api/states/';
+    const url = 'http://localhost:8000/api/locations/';
 
     const response = await fetch(url);
 
     if (!(response.ok)) {
-        throw new Error('Response was very not cool, dude')
+        throw new Error('Response was really not okay 🥺')
     } else {
         const data = await response.json();
         console.log(data);
 
-        const selectTag = document.getElementById('state');
-        for (let state of data.states) {
-            const option = document.createElement('option')
-            option.innerHTML = state.name;
-            option.value = state.abbreviation
-            selectTag.appendChild(option)
+        const locationTag = document.getElementById('location')
+        for (let place of data.locations) {
+            const optionLoc = document.createElement('option')
+            optionLoc.innerHTML = place.name;
+            optionLoc.value = place.id;
+            locationTag.appendChild(optionLoc)
         }
-        const formTag = document.getElementById('create-location-form');
+        const formTag = document.getElementById('create-conference-form');
         formTag.addEventListener('submit', async event => {
             event.preventDefault();
             const formData = new FormData(formTag);
             const json = JSON.stringify(Object.fromEntries(formData));
             console.log(json);
-            const locationUrl = 'http://localhost:8000/api/locations/';
+            const conferenceURL = 'http://localhost:8000/api/conferences/';
             const fetchConfig = {
                 method: "post",
                 body: json,
@@ -30,11 +30,11 @@ window.addEventListener('DOMContentLoaded', async () => {
                     'Content-Type': 'application/json',
                 },
             };
-            const response = await fetch(locationUrl, fetchConfig);
+            const response = await fetch(conferenceURL, fetchConfig);
             if (response.ok) {
                 formTag.reset();
-                const newLocation = await response.json();
-                console.log(newLocation);
+                const newConference = await response.json();
+                console.log(newConference);
             }
         })
     }

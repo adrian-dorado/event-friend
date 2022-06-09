@@ -8,8 +8,8 @@
               rel="stylesheet"
               integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
               crossorigin="anonymous">
-        <title>New Location :: Conference GO!</title>
-        <script type="module" src="js/new-location.js"></script>
+        <title>New Conference :: Conference GO!</title>
+        <script type="module" src="js/new-conference.js"></script>
     </head>
     <body>
         <header>
@@ -34,7 +34,9 @@
                                 <a class="nav-link active" aria-current="page" href="new-location.html">New Location</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="new-conference.html">New Conference</a>
+                                <a class="nav-link active"
+                                   aria-current="page"
+                                   href="new-conference.html">New Conference</a>
                             </li>
                         </ul>
                         <form class="d-flex">
@@ -53,8 +55,8 @@
                 <div class="row">
                     <div class="offset-3 col-6">
                         <div class="shadow p-4 mt-4">
-                            <h1>Create a new location</h1>
-                            <form id="create-location-form">
+                            <h1>Create a new conference</h1>
+                            <form id="create-conference-form">
                                 <div class="form-floating mb-3">
                                     <input placeholder="Name"
                                            required
@@ -65,27 +67,55 @@
                                     <label for="name">Name</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input placeholder="Room count"
+                                    <input placeholder="Start Date"
                                            required
-                                           type="number"
-                                           name="room_count"
-                                           id="room_count"
+                                           type="date"
+                                           name="starts"
+                                           id="starts"
                                            class="form-control">
-                                    <label for="room_count">Room count</label>
+                                    <label for="start_date">Room count</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input placeholder="City"
+                                    <input placeholder="End Date"
                                            required
-                                           type="text"
-                                           name="city"
-                                           id="city"
+                                           type="date"
+                                           name="ends"
+                                           id="ends"
                                            class="form-control">
-                                    <label for="city">City</label>
+                                    <label for="end_date">End Date</label>
+                                </div>
+                                <div class="">
+                                    <textarea placeholder="Description"
+                                              required
+                                              type="text"
+                                              name="description"
+                                              rows="3"
+                                              id="description"
+                                              class="form-control"></textarea>
+                                    <label for="description"></label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input placeholder="Maximum presentations"
+                                           required
+                                           type="number"
+                                           name="max_presentations"
+                                           id="max_presentations"
+                                           class="form-control">
+                                    <label for="max_presentations">Max presentations</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input placeholder="Maximum attendees"
+                                           required
+                                           type="number"
+                                           name="max_attendees"
+                                           id="max_attendees"
+                                           class="form-control">
+                                    <label for="max_attendees">Max attendees</label>
                                 </div>
                                 <div class="mb-3">
-                                    <select required id="state" name="state" class="form-select">
+                                    <select required id="location" name="location" class="form-select">
                                         <option selected value="">
-                                            Choose a state
+                                            Choose a place
                                         </option>
                                     </select>
                                 </div>
