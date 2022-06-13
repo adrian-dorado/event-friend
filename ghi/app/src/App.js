@@ -1,6 +1,4 @@
 import Nav from './Nav.js';
-import React from "react"
-import './App.css';
 import AttendeesList from './AttendeesList.js';
 import LocationForm from './LocationForm.js';
 
