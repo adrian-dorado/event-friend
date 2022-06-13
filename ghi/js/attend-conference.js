@@ -1,4 +1,7 @@
 window.addEventListener('DOMContentLoaded', async () => {
+    const conferenceTag = document.getElementById('conference');
+    const loadingIcon = document.getElementById('loading-conference-spinner')
+    const successMessage = document.getElementById('success-message')
     const url = 'http://localhost:8000/api/conferences/'
     const response = await fetch(url);
 
@@ -8,7 +11,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         const data = await response.json();
         console.log(data);
 
-        const conferenceTag = document.getElementById('conference');
         console.log(conferenceTag)
         for (let events of data.conferences) {
             const option = document.createElement('option');
@@ -16,7 +18,29 @@ window.addEventListener('DOMContentLoaded', async () => {
             option.value = events.href;
             conferenceTag.appendChild(option)
         }
-        let showLoad = conferenceTag.classList.add("d none")
+        const formTag = document.getElementById('create-attendee-form')
+        formTag.addEventListener('submit', async event => {
+            event.preventDefault();
+            const formData = new FormData(formTag);
+            const json = JSON.stringify(Object.fromEntries(formData));
+            const attendConferenceURL = 'http://localhost:8001/api/attendees/';
+            const fetchConfig = {
+                method: 'post',
+                body: json,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            };
+            const response = await fetch(attendConferenceURL, fetchConfig);
+            if (response.ok) {
+                formTag.classList.add("d-none")
+                formTag.reset();
+                const newAttendee = await response.json();
+                console.log(newAttendee);
+                successMessage.classList.remove("d-none")
+            }   
+        })
+        loadingIcon.classList.add("d-none")
+        conferenceTag.classList.remove("d-none")
     }
-
 });
