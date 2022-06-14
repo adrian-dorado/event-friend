@@ -10,10 +10,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         console.log(data);
 
         const locationTag = document.getElementById('location')
-        for (let place of data.locations) {
+        for (let location of data.locations) {
             const optionLoc = document.createElement('option')
-            optionLoc.innerHTML = place.name;
-            optionLoc.value = place.id;
+            optionLoc.innerHTML = location.name;
+            optionLoc.value = location.id;
             locationTag.appendChild(optionLoc)
         }
         const formTag = document.getElementById('create-conference-form');

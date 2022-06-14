@@ -3,20 +3,50 @@ import React, { Component } from 'react'
 export default class LocationForm extends Component {
     constructor(props) {
         super(props)
-        this.state = { states: [] };
+        this.state = {
+            name: '',
+            roomCount: '',
+            city: '',
+            states: []
+        };
+
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleRoomCountChange = this.handleRoomCountChange.bind(this);
         this.handleCityChange = this.handleCityChange.bind(this);
         this.handleStateChange = this.handleStateChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    handleSubmit(event) {
+    
+    async handleSubmit(event) {
+        
         event.preventDefault();
-        const data = {...this.state};
+        const data = { ...this.state };
         data.room_count = data.roomCount;
         delete data.roomCount;
         delete data.states;
         console.log(data);
+
+        const locationUrl = 'http://localhost:8000/api/locations/';
+        const fetchConfig = {
+            method: "post",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        const response = await fetch(locationUrl, fetchConfig);
+        if (response.ok) {
+            const newLocation = await response.json();
+            console.log(newLocation);
+        }
+
+        const cleared = {
+            name: '',
+            roomCount: '',
+            city: '',
+            state: '',
+        };
+        this.setState(cleared);
     }
 
     handleNameChange(event) {
@@ -26,7 +56,7 @@ export default class LocationForm extends Component {
 
     handleRoomCountChange(event) {
         const value = event.target.value;
-        this.setState({ room_count: value });
+        this.setState({ roomCount: value });
     }
 
     handleCityChange(event) {
@@ -40,7 +70,7 @@ export default class LocationForm extends Component {
     }
 
     async componentDidMount() {
-        
+
         const url = 'http://localhost:8000/api/states/';
 
         const response = await fetch(url);
@@ -58,19 +88,19 @@ export default class LocationForm extends Component {
                         <h1>Create a new location</h1>
                         <form onSubmit={this.handleSubmit} id="create-location-form">
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
+                                <input onChange={this.handleNameChange} value={this.state.name} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
                                 <label htmlFor="name">Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleRoomCountChange} placeholder="Room count" required type="number" name="room_count" id="room_count" className="form-control" />
+                                <input onChange={this.handleRoomCountChange} value={this.state.roomCount} placeholder="Room count" required type="number" name="roomCount" id="roomCount" className="form-control" />
                                 <label htmlFor="room_count">Room count</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={this.handleCityChange} placeholder="City" required type="text" name="city" id="city" className="form-control" />
+                                <input onChange={this.handleCityChange} value={this.state.city} placeholder="City" required type="text" name="city" id="city" className="form-control" />
                                 <label htmlFor="city">City</label>
                             </div>
                             <div className="mb-3">
-                                <select onChange={this.handleStateChange} required name="state" id="state" className="form-select">
+                                <select onChange={this.handleStateChange} value={this.state.state} required name="state" id="state" className="form-select">
                                     <option value="">Choose a state</option>
                                     {this.state.states.map(state => {
                                         return (
@@ -81,7 +111,7 @@ export default class LocationForm extends Component {
                                     })}
                                 </select>
                             </div>
-                            <button className="btn btn-primary">Create</button>
+                            <button className="btn btn-outline-dark">Create</button>
                         </form>
                     </div>
                 </div>
