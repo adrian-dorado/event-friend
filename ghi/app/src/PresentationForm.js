@@ -149,7 +149,7 @@ export default class PresentationForm extends Component {
                                     })}
                                 </select>
                             </div>
-                            <button className="btn">Create</button>
+                            <button className="btn btn-outline-dark">Create</button>
                         </form>
                     </div>
                 </div>

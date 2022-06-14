@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function AttendeesList(props) {
     return (
         <table className="table table-hover table-dark table-striped">
