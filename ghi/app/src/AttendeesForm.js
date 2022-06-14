@@ -106,7 +106,7 @@ export default class AttendeesForm extends Component {
                                             <option value="">Choose a conference</option>
                                             {this.state.conferences.map(conference => {
                                                 return (
-                                                    <option key={conference.id} value={conference.id}>
+                                                    <option key={conference.href} value={conference.href}>
                                                         {conference.name}
                                                     </option>
                                                 );

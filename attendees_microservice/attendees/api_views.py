@@ -8,7 +8,7 @@ from .models import AccountVO, Attendee, ConferenceVO
 
 class ConferenceVODetailEncoder(ModelEncoder):
     model = ConferenceVO
-    properties = ["name", "import_href"]
+    properties = ["name", "import_href", "id"]
 
 
 class AttendeeListEncoder(ModelEncoder):
